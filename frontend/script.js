@@ -36,7 +36,7 @@ const isLocalhost = window.location.hostname === 'localhost' ||
     window.location.protocol === 'file:';
 
 const BACKEND_URL = isLocalhost
-    ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : window.location.origin)
+    ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : window.location.origin)
     : (window.ENV_BACKEND_URL || window.location.origin);
 
 const API_BASE_URL = `${BACKEND_URL}/api`;
@@ -61,8 +61,23 @@ const DEFAULT_STUDENT_CLASS_ORDER = [
     'Class Five',
     'Class Six',
     'Class Seven',
-    'Class Eight'
+    'Class Eight',
+    'Class Nine',
+    'Class Ten',
+    'Graduate'
 ];
+const SCHOOL_EXAM_TYPES = Object.freeze(['First Term', 'Mid Term', 'Third Term', 'Final']);
+
+function normalizeSchoolExamType(value = '') {
+    const raw = String(value || '').trim();
+    if (!raw) return 'Mid Term';
+    const normalized = raw.toLowerCase().replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+    if (/^(first|1st)( term)?(\s+\d{4}(\s+\d{2})?)?$|^term 1(\s+\d{4}(\s+\d{2})?)?$/.test(normalized)) return 'First Term';
+    if (/^(mid ?term|midterm|half yearly)(\s+\d{4}(\s+\d{2})?)?$/.test(normalized)) return 'Mid Term';
+    if (/^(third|3rd)( term)?(\s+\d{4}(\s+\d{2})?)?$|^term 3(\s+\d{4}(\s+\d{2})?)?$/.test(normalized)) return 'Third Term';
+    if (/^(final|annual|supply)( exam(ination)?| term)?(\s+\d{4}(\s+\d{2})?)?$/.test(normalized)) return 'Final';
+    return raw;
+}
 let studentQuickFilterBranchCampuses = [];
 let studentColumnSearchFilter = null;
 let studentExamReportRecords = null;
@@ -1402,8 +1417,8 @@ function escapeHtml(value) {
 
 function getBrandingSettings() {
     const fallback = {
-        schoolName: 'Green Land Model School Jand',
-        schoolTitle: 'Green Land Model School Jand',
+        schoolName: 'Readers Line Grammer School Jand',
+        schoolTitle: 'Readers Line Grammer School Jand',
         session: '',
         phone: '+92 300 5203469',
         address: 'Haji Bazar Chowk, Tehsil Road Jand.',
@@ -1489,7 +1504,7 @@ function normalizeTeacherSchedule(schedule) {
 const DEFAULT_TEACHER_SCHEDULE_CLASSES = [
     'Play Group', 'Nursarry', 'Prep',
     'Class One', 'Class Two', 'Class Three', 'Class Four', 'Class Five',
-    'Class Six', 'Class Seven', 'Class Eight'
+    'Class Six', 'Class Seven', 'Class Eight', 'Class Nine', 'Class Ten', 'Graduate'
 ];
 
 function splitTeacherClassAndSection(classGrade = '', section = '') {
@@ -1618,50 +1633,6 @@ function getTeacherSectionsForClass(classGrade = '') {
     const targetClass = splitTeacherClassAndSection(classGrade).classGrade.toLowerCase();
     return getTeacherClassSectionCatalog()
         .find((item) => item.name.toLowerCase() === targetClass)?.sections || [];
-}
-
-function populateTeacherAssignedSectionOptions(selectedAssignedSections = '') {
-    const select = document.getElementById('tAssignedSections');
-    if (!select) return;
-
-    const selectedEntries = parseTeacherAssignedSections(selectedAssignedSections);
-    const options = new Map();
-    const addOption = (classGrade, section = '') => {
-        const normalized = splitTeacherClassAndSection(classGrade, section);
-        if (!normalized.classGrade) return;
-        const sectionName = normalized.section || 'General';
-        options.set(`${normalized.classGrade.toLowerCase()}||${sectionName.toLowerCase()}`, {
-            classGrade: normalized.classGrade,
-            section: sectionName
-        });
-    };
-
-    getTeacherClassSectionCatalog().forEach((item) => {
-        const sections = item.sections.length ? item.sections : ['General'];
-        sections.forEach((section) => addOption(item.name, section));
-    });
-    selectedEntries.forEach((item) => addOption(item.classGrade, item.section));
-
-    select.innerHTML = [...options.values()]
-        .sort((a, b) => {
-            const classCompare = typeof compareStudentClassNames === 'function'
-                ? compareStudentClassNames(a.classGrade, b.classGrade)
-                : a.classGrade.localeCompare(b.classGrade, undefined, { numeric: true, sensitivity: 'base' });
-            return classCompare || a.section.localeCompare(b.section, undefined, { numeric: true, sensitivity: 'base' });
-        })
-        .map((item) => `<option value="${escapeHtml(`${item.classGrade}||${item.section}`)}">${escapeHtml(formatTeacherClassSection(item.classGrade, item.section))}</option>`)
-        .join('');
-
-    const selectedKeys = new Set(selectedEntries.map((item) => `${item.classGrade.toLowerCase()}||${item.section.toLowerCase()}`));
-    Array.from(select.options).forEach((option) => {
-        option.selected = selectedKeys.has(String(option.value).toLowerCase());
-    });
-}
-
-function getSelectedTeacherAssignedSections() {
-    const select = document.getElementById('tAssignedSections');
-    if (!select) return [];
-    return parseTeacherAssignedSections(Array.from(select.selectedOptions).map((option) => option.value));
 }
 
 function populateTeacherScheduleClassOptions(selectedClass = '') {
@@ -2674,12 +2645,12 @@ function queueWelcomeAnimationForNextPage(user) {
     try {
         const displayName = user?.fullName || user?.username || user?.role || 'User';
         const role = user?.role || 'User';
-        let schoolName = 'Green Land Model School Jand';
+        let schoolName = 'Readers Line Grammer School Jand';
         try {
             const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
             schoolName = String(settings.schoolName || settings.schoolTitle || schoolName).trim() || schoolName;
         } catch (_error) {
-            schoolName = 'Green Land Model School Jand';
+            schoolName = 'Readers Line Grammer School Jand';
         }
         sessionStorage.setItem(
             EDUCORE_WELCOME_SESSION_KEY,
@@ -2725,11 +2696,11 @@ function showWelcomeAnimationIfNeeded() {
     const schoolName = String(payload.schoolName || (() => {
         try {
             const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-            return settings.schoolName || settings.schoolTitle || 'Green Land Model School Jand';
+            return settings.schoolName || settings.schoolTitle || 'Readers Line Grammer School Jand';
         } catch (_error) {
-            return 'Green Land Model School Jand';
+            return 'Readers Line Grammer School Jand';
         }
-    })()).trim() || 'Green Land Model School Jand';
+    })()).trim() || 'Readers Line Grammer School Jand';
     const escape = typeof escapeSessionText === 'function' ? escapeSessionText : (value) => String(value ?? '');
 
     overlay.innerHTML = `
@@ -6342,9 +6313,9 @@ function printStudentAdmissionFormFromEncoded(encodedPayload) {
 function getEmailSchoolName() {
     try {
         const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-        return String(branding.schoolName || branding.schoolTitle || 'Green Land Model School Jand').trim() || 'Green Land Model School Jand';
+        return String(branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand').trim() || 'Readers Line Grammer School Jand';
     } catch (_error) {
-        return 'Green Land Model School Jand';
+        return 'Readers Line Grammer School Jand';
     }
 }
 
@@ -6835,26 +6806,26 @@ async function openStudentPerformanceReportFromEncoded(encodedPayload, reportMod
 
     const yearInput=document.getElementById('examReportYear')?.value||'';
     const selectedYear=String(yearInput||'');
-    const selectedType=document.getElementById('examReportType')?.value||'Mid Term';
+    const selectedType=normalizeSchoolExamType(document.getElementById('examReportType')?.value||'Mid Term');
     const apiBase=typeof getApiBaseUrl==='function'?getApiBaseUrl():'/api';
     const normalizeReportName=value=>String(value||'').trim().toLowerCase().replace(/\s+/g,' ');
     let examResults=Array.isArray(studentExamReportRecords)?studentExamReportRecords.filter(record=>String(record.studentId||'')===String(student.id||'')||(normalizeReportName(record.studentName)&&normalizeReportName(record.studentName)===normalizeReportName(student.fullName))):[];
     if(!examResults.length){try{const response=await fetch(apiBase+'/student-results?studentId='+encodeURIComponent(student.id||''));const data=await response.json();if(response.ok&&data.success)examResults=Array.isArray(data.results)?data.results:[];}catch(_){}}
     let localMarks=[];try{localMarks=JSON.parse(localStorage.getItem('eduCore_student_skill_performance')||'[]').filter(record=>String(record.studentId)===String(student.id)||normalizeReportName(record.studentName)===normalizeReportName(student.fullName));}catch(_){}
-    const resultMarks=examResults.flatMap(result=>{const year=String(result.examYear||result.session||String(result.performanceDate||'').slice(0,4));const type=String(result.examType||result.examName||'Mid Term');const subjects=Array.isArray(result.subjects)&&result.subjects.length?result.subjects:(result.subject?[result]:[]);return subjects.filter(item=>item.subject&&item.obtainedMarks!=null&&item.obtainedMarks!=='').map(item=>({...result,...item,examYear:year,examType:type}));});
+    const resultMarks=examResults.flatMap(result=>{const year=String(result.examYear||result.session||String(result.performanceDate||'').slice(0,4));const type=normalizeSchoolExamType(result.examType||result.termTitle||result.examName||'Mid Term');const subjects=Array.isArray(result.subjects)&&result.subjects.length?result.subjects:(result.subject?[result]:[]);return subjects.filter(item=>item.subject&&item.obtainedMarks!=null&&item.obtainedMarks!=='').map(item=>({...result,...item,examYear:year,examType:type}));});
     const examRowsByKey=new Map();
     [...resultMarks,...localMarks].forEach(result=>{
         if(!result.subject||result.obtainedMarks==null||result.obtainedMarks==='')return;
         const year=String(result.examYear||result.session||String(result.performanceDate||'').slice(0,4));
-        const type=String(result.examType||result.examName||'Mid Term');
-        if((selectedYear&&year!==selectedYear)||type.trim().toLowerCase()!==selectedType.trim().toLowerCase())return;
+        const type=normalizeSchoolExamType(result.examType||result.termTitle||result.examName||'Mid Term');
+        if((selectedYear&&year!==selectedYear)||normalizeSchoolExamType(type)!==selectedType)return;
         const key=[result.studentId||student.id,normalizeReportName(result.subject),type.toLowerCase(),year].join('|');
         if(!examRowsByKey.has(key))examRowsByKey.set(key,{...result,examYear:year,examType:type});
     });
     const examRows=[...examRowsByKey.values()].sort((a,b)=>String(a.subject).localeCompare(String(b.subject),undefined,{sensitivity:'base'}));
     const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
     const branding=typeof getBrandingSettings==='function'?getBrandingSettings():{};
-    const schoolName=branding.schoolName||branding.schoolTitle||'Green Land Model School Jand';
+    const schoolName=branding.schoolName||branding.schoolTitle||'Readers Line Grammer School Jand';
     const logoSrc=typeof getBrandingLogoSrc==='function'?getBrandingLogoSrc():'images/logo.jpeg';
     const obtainedTotal=examRows.reduce((sum,row)=>sum+(Number(row.obtainedMarks)||0),0);
     const marksTotal=examRows.reduce((sum,row)=>sum+(Number(row.totalMarks)||0),0);
@@ -6914,7 +6885,7 @@ function buildStudentFullPortfolioReport(student, records, esc) {
     const session = `${year}-${year + 1}`;
     return `<div class="portfolio-report"><style>
         .portfolio-report{width:210mm;min-height:297mm;margin:0 auto;background:#fff;color:#111;padding:7mm;box-sizing:border-box;font-family:"Times New Roman",serif;font-size:11px}.portfolio-report *{box-sizing:border-box}.portfolio-report .print-button{float:right;margin-bottom:5px}.portfolio-sheet{clear:both;border:1.5px solid #111}.portfolio-header{display:grid;grid-template-columns:78px 1fr;align-items:center;min-height:82px;border-bottom:1px solid #111;text-align:center}.portfolio-logo{width:54px;height:54px;object-fit:contain;margin:auto}.portfolio-title{font-size:25px;font-weight:700;line-height:1}.portfolio-school{font-size:17px;font-weight:700;margin-top:8px}.portfolio-bar{text-align:center;font-weight:700;font-size:14px;border-bottom:1px solid #111;background:#f1f1f1}.portfolio-profile{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;border-bottom:1px solid #111;font-weight:700;font-size:14px}.portfolio-profile p{margin:3px 0}.portfolio-line{display:inline-block;min-width:155px;border-bottom:1px solid #111;font-style:italic}.policy{padding:8px 18px;border-bottom:1px solid #111}.policy-text{border:2px solid #111;border-radius:25px;padding:14px 18px;font-size:13px;line-height:1.15;text-align:justify}.portfolio-table{border-collapse:collapse;width:100%;font-size:12px}.portfolio-table th,.portfolio-table td{border:1px solid #111;padding:3px 5px;text-align:center;line-height:1.05}.portfolio-table th:first-child{text-align:left}.portfolio-table .section-title th{text-align:center;background:#eee;font-size:14px}.portfolio-table thead th{background:#e9e9e9;text-align:center}.portfolio-table td{width:11%}.portfolio-table th:first-child{width:56%}.portfolio-table td:not(:empty){font-size:22px;font-family:Arial;color:#142d8b;font-weight:700}.remarks{border-top:1px solid #111}.remarks-title{text-align:center;font-weight:700;font-size:14px;border-bottom:1px solid #111}.remark-row{display:grid;grid-template-columns:1fr 65px;border-bottom:1px solid #111}.remark-row span{padding:4px;border-right:1px solid #111}.signature-title{text-align:center;font-weight:700;font-size:14px}.signatures{display:grid;grid-template-columns:1fr 1fr;gap:75px;padding:18px 18px 7px;font-weight:700}.signature-line{border-top:1px solid #111;text-align:center;padding-top:3px}.result-date{text-align:center;font-weight:700;font-size:14px;padding:4px;border-top:1px solid #111}@media print{body *{visibility:hidden}.portfolio-report,.portfolio-report *{visibility:visible}.portfolio-report{position:absolute;left:0;top:0;width:100%;margin:0;padding:7mm}.portfolio-report .print-button{display:none}@page{size:A4 portrait;margin:0}}</style>
-        <button type="button" class="btn btn-outline print-button" onclick="window.print()">Print</button><div class="portfolio-sheet"><div class="portfolio-header"><img class="portfolio-logo" src="images/logo.jpeg" alt="School logo"><div><div class="portfolio-title">PORTFOLIO REPORT</div><div class="portfolio-school">Green Land Model School Jand</div></div></div><div class="portfolio-bar">Student Profile</div><div class="portfolio-profile"><div><p>Student Name : <span class="portfolio-line">${esc(student.fullName || '-')}</span></p><p>Registration no : <span class="portfolio-line">${esc(student.studentCode || student.id || '-')}</span></p></div><div><p>Class &amp; Section : <span class="portfolio-line">${esc(student.classGrade || '-')}</span></p><p>Session : <span class="portfolio-line">${session}</span></p></div></div><div class="portfolio-bar">Policy Note</div><div class="policy"><div class="policy-text">At Green Land Model School Jand, we focus on skill development rather than only marks. Throughout the academic year, students develop different subject skills and life skills. These skills are regularly observed, assessed, and recorded in each student's portfolio. This summary highlights the important skills, progress, and development of your child during the year.</div></div><table class="portfolio-table"><thead><tr class="section-title"><th colspan="5">Portfolio Skills Assessment Summary</th></tr><tr><th>Subjects Portfolio Assessment</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr></thead><tbody>${assessmentRows(allSubjects)}<tr class="section-title"><th colspan="5">Performance Task</th></tr><tr><th>Co-Curricular Activities</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Project', 'Presentation', 'Practical Task', 'Activities'], 'Co-Curriculum')}<tr class="section-title"><th colspan="5">Learning Attitude</th></tr><tr><th>Participation</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Home Task Completion', 'Classroom behavior', 'Hygiene condition', 'Regularity'], 'Participation')}</tbody></table><div class="remarks"><div class="remarks-title">Remarks</div><div class="remark-row"><span>Excellent performance with strong understanding and independent application of concepts.</span><span></span></div><div class="remark-row"><span>Good progress with a solid understanding; continued practice will further improve performance.</span><span></span></div><div class="remark-row"><span>Shows basic understanding but needs more effort and practice to improve.</span><span></span></div><div class="remark-row"><span>Limited understanding; requires significant improvement and instructional support.</span><span></span></div></div><div class="signature-title">Signature</div><div class="signatures"><div class="signature-line">Teacher's signature</div><div class="signature-line">Principal Signature</div></div><div class="result-date">Result Date : ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' })}</div></div></div>`;
+        <button type="button" class="btn btn-outline print-button" onclick="window.print()">Print</button><div class="portfolio-sheet"><div class="portfolio-header"><img class="portfolio-logo" src="images/logo.jpeg" alt="School logo"><div><div class="portfolio-title">PORTFOLIO REPORT</div><div class="portfolio-school">Readers Line Grammer School Jand</div></div></div><div class="portfolio-bar">Student Profile</div><div class="portfolio-profile"><div><p>Student Name : <span class="portfolio-line">${esc(student.fullName || '-')}</span></p><p>Registration no : <span class="portfolio-line">${esc(student.studentCode || student.id || '-')}</span></p></div><div><p>Class &amp; Section : <span class="portfolio-line">${esc(student.classGrade || '-')}</span></p><p>Session : <span class="portfolio-line">${session}</span></p></div></div><div class="portfolio-bar">Policy Note</div><div class="policy"><div class="policy-text">At Readers Line Grammer School Jand, we focus on skill development rather than only marks. Throughout the academic year, students develop different subject skills and life skills. These skills are regularly observed, assessed, and recorded in each student's portfolio. This summary highlights the important skills, progress, and development of your child during the year.</div></div><table class="portfolio-table"><thead><tr class="section-title"><th colspan="5">Portfolio Skills Assessment Summary</th></tr><tr><th>Subjects Portfolio Assessment</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr></thead><tbody>${assessmentRows(allSubjects)}<tr class="section-title"><th colspan="5">Performance Task</th></tr><tr><th>Co-Curricular Activities</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Project', 'Presentation', 'Practical Task', 'Activities'], 'Co-Curriculum')}<tr class="section-title"><th colspan="5">Learning Attitude</th></tr><tr><th>Participation</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Home Task Completion', 'Classroom behavior', 'Hygiene condition', 'Regularity'], 'Participation')}</tbody></table><div class="remarks"><div class="remarks-title">Remarks</div><div class="remark-row"><span>Excellent performance with strong understanding and independent application of concepts.</span><span></span></div><div class="remark-row"><span>Good progress with a solid understanding; continued practice will further improve performance.</span><span></span></div><div class="remark-row"><span>Shows basic understanding but needs more effort and practice to improve.</span><span></span></div><div class="remark-row"><span>Limited understanding; requires significant improvement and instructional support.</span><span></span></div></div><div class="signature-title">Signature</div><div class="signatures"><div class="signature-line">Teacher's signature</div><div class="signature-line">Principal Signature</div></div><div class="result-date">Result Date : ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' })}</div></div></div>`;
 }
 
 function formatClassFeeSessionMonth(value = '') {
@@ -7075,8 +7046,9 @@ function getStudentQuickFilterClassLabel(className) {
         'grade 6th': 'Class Six', 'grade 6': 'Class Six', 'class 6': 'Class Six',
         'grade 7th': 'Class Seven', 'grade 7': 'Class Seven', 'class 7': 'Class Seven',
         'grade 8th': 'Class Eight', 'grade 8': 'Class Eight', 'class 8': 'Class Eight',
-        'grade 9th': 'Class Nine', 'grade 9': 'Class Nine', 'class 9': 'Class Nine',
-        'grade 10th': 'Class 10', 'grade 10': 'Class 10', 'class ten': 'Class 10'
+        'grade 9th': 'Class Nine', 'grade 9': 'Class Nine', 'class 9': 'Class Nine', 'class nine': 'Class Nine',
+        'grade 10th': 'Class Ten', 'grade 10': 'Class Ten', 'class 10': 'Class Ten', 'class ten': 'Class Ten',
+        'graduate': 'Graduate', 'graduated': 'Graduate', 'alumni': 'Graduate'
     };
     if (classAliases[normalized]) return classAliases[normalized];
     return className;
@@ -7352,7 +7324,7 @@ async function loadStudentExamReportRecords() {
         try { savedMarks = JSON.parse(localStorage.getItem('eduCore_student_skill_performance') || '[]'); } catch (_) {}
         const resultMarks = (Array.isArray(data.results) ? data.results : []).flatMap(result => {
             const year = String(result.examYear || result.session || String(result.performanceDate || '').slice(0, 4));
-            const type = String(result.examType || result.examName || 'Mid Term');
+            const type = normalizeSchoolExamType(result.examType || result.termTitle || result.examName || 'Mid Term');
             const subjects = Array.isArray(result.subjects) && result.subjects.length
                 ? result.subjects
                 : (result.subject ? [result] : []);
@@ -7452,14 +7424,14 @@ function renderStudents(term) {
 
     if (window.location.hash === '#status' && Array.isArray(studentExamReportRecords)) {
         const selectedYear = String(document.getElementById('examReportYear')?.value || '');
-        const selectedType = String(document.getElementById('examReportType')?.value || 'Mid Term').toLowerCase();
+        const selectedType = normalizeSchoolExamType(document.getElementById('examReportType')?.value || 'Mid Term');
         const matchingRecords = studentExamReportRecords
             .filter(record => {
                 if (!record.studentId || !record.subject || record.obtainedMarks == null || record.obtainedMarks === '') return false;
                 const recordYear = String(record.examYear || record.session || String(record.performanceDate || '').slice(0, 4));
-                const recordType = String(record.examType || record.examName || '').trim().toLowerCase();
+                const recordType = normalizeSchoolExamType(record.examType || record.examName || 'Mid Term');
                 return (!selectedYear || recordYear === selectedYear) &&
-                    recordType === selectedType.trim().toLowerCase();
+                    recordType === selectedType;
             });
         const normalizeStudentName = value => String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
         filtered = filtered.filter(student => matchingRecords.some(record =>
@@ -8132,7 +8104,7 @@ function printStudentAdmissionForm(student = {}) {
     const legacyPlaceholderNames = new Set(['harward school', 'harvard school']);
     const schoolName = rawSchoolName && !legacyPlaceholderNames.has(rawSchoolName.toLowerCase())
         ? rawSchoolName
-        : 'Green Land Model School Jand';
+        : 'Readers Line Grammer School Jand';
     const schoolLogo = new URL('images/logo.jpeg', window.location.href).href;
     const printedAt = new Date().toLocaleString();
     const statusLabel = getStudentStatusLabel(student);
@@ -8491,7 +8463,6 @@ function toggleTeacherForm(editMode = false) {
             document.getElementById('teacherId').value = '';
             const teacherCodeField = document.getElementById('teacherCode');
             if (teacherCodeField) teacherCodeField.value = generateEntityCode(STORAGE_KEY_TEACHERS, 'TCH');
-            populateTeacherAssignedSectionOptions();
             title.innerText = 'Add New Teacher';
         } else {
             title.innerText = 'Edit Teacher Details';
@@ -8683,7 +8654,6 @@ async function handleTeacherFormSubmit(e) {
         designation: document.getElementById('tDesignation')?.value || 'Teacher',
         groupKey: getDesignationGroup('tDesignation', 'teacher'),
         subject: document.getElementById('tSubject').value,
-        assignedSections: JSON.stringify(getSelectedTeacherAssignedSections()),
         fingerprintData: document.getElementById('tFingerprintData') ? document.getElementById('tFingerprintData').value.trim() : (existingTeacher?.fingerprintData || ''),
         salary: salaryValInput,
         username: usernameInput,
@@ -9011,7 +8981,6 @@ function editTeacher(t) {
     document.getElementById('tGender').value = t.gender || '';
     setDesignationSelectValue('tDesignation', normalizedTeacherDesignation.designation, normalizedTeacherDesignation.groupKey);
     document.getElementById('tSubject').value = t.subject;
-    populateTeacherAssignedSectionOptions(t.assignedSections);
     if (document.getElementById('tFingerprintData')) document.getElementById('tFingerprintData').value = t.fingerprintData || '';
     document.getElementById('tSalary').value = t.salary || '0';
     if (document.getElementById('tBankName')) document.getElementById('tBankName').value = t.bankName || '';

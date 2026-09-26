@@ -7,7 +7,7 @@
         if (window.API_BASE_URL) return window.API_BASE_URL;
         const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
         const backendUrl = isLocalhost
-            ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : window.location.origin)
+            ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : window.location.origin)
             : (window.ENV_BACKEND_URL || window.location.origin);
         return `${backendUrl}/api`;
     }

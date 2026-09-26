@@ -13,33 +13,19 @@ if (Test-Path $outputPath) {
 }
 
 $excludePrefixes = @(
-    ".agents\",
     ".agents/",
-    ".codex\",
     ".codex/",
-    ".git\",
     ".git/",
-    ".github\",
     ".github/",
-    ".deploy_tmp\",
     ".deploy_tmp/",
-    ".vscode\",
     ".vscode/",
-    "android\\",
     "android/",
-    "ios\\",
     "ios/",
-    "Final-Apps\\",
     "Final-Apps/",
-    "Archive\\",
     "Archive/",
-    "docs\\",
     "docs/",
-    "data\\",
     "data/",
-    "node_modules\",
     "node_modules/",
-    "tools\",
     "tools/"
 )
 
@@ -49,7 +35,7 @@ if ($IncludeNodeModules) {
 
 $allFiles = Get-ChildItem -Path $projectRoot -Recurse -File -Force
 $filesToPack = $allFiles | Where-Object {
-    $relative = $_.FullName.Substring($projectRoot.Length).TrimStart('\', '/')
+    $relative = $_.FullName.Substring($projectRoot.Length).TrimStart('\', '/').Replace('\', '/')
     if ($excludePrefixes | Where-Object { $relative.StartsWith($_, [System.StringComparison]::OrdinalIgnoreCase) }) {
         return $false
     }
@@ -107,7 +93,7 @@ SMTP_SECURE=false
 SMTP_USER=
 SMTP_PASS=
 SMTP_FROM_EMAIL=
-SMTP_FROM_NAME=Green Land Model School Jand
+SMTP_FROM_NAME=Readers Line Grammer School Jand
 
 SCHOOL_WEBSITE=https://greenlandjand.com
 OPENAI_API_KEY=
@@ -116,7 +102,7 @@ OPENAI_MODEL=gpt-4o-mini
 Set-Content -LiteralPath (Join-Path $tempDir ".env.example") -Value $envTemplate -Encoding UTF8
 
 $deployNotes = @'
-GREEN LAND MODEL SCHOOL JAND — HOSTINGER NODE.JS PACKAGE
+READERS LINE GRAMMER SCHOOL JAND — HOSTINGER NODE.JS PACKAGE
 Domain: greenlandjand.com
 
 1. Extract this ZIP into the Hostinger Node.js application directory assigned to the domain.

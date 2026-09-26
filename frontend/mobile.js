@@ -53,7 +53,7 @@ function resolveApiBaseUrl() {
     const hostname = window.location.hostname || '';
     const localHost = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.') || hostname.startsWith('10.') || hostname.startsWith('172.');
     if (window.location.protocol === 'file:') return 'https://alis.eduzeeno.com';
-    if (localHost) return `${window.location.protocol}//${window.location.host || 'localhost:3000'}`;
+    if (localHost) return `${window.location.protocol}//${window.location.host || 'localhost:3001'}`;
     return window.location.origin;
 }
 

@@ -29,7 +29,7 @@ async function loadSchoolBanners() {
       if (!['http:', 'https:'].includes(url.protocol)) continue;
       const img = document.createElement('img');
       img.src = url.href;
-      img.alt = banner.title || 'Green Land Model School Jand announcement';
+      img.alt = banner.title || 'Readers Line Grammer School Jand announcement';
       img.loading = 'lazy';
       img.addEventListener('error', () => img.remove());
       container.append(img);

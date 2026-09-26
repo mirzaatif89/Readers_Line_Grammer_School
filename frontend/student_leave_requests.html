@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Leave Requests - Green Land Model School Jand</title>
+    <title>Student Leave Requests - Readers Line Grammer School Jand</title>
     <link rel="icon" type="image/png" href="images/logo.jpeg">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <link rel="stylesheet" href="student_schedule_theme.css">
@@ -43,7 +43,7 @@
 <body>
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.jpeg" alt="Green Land Model School Jand logo"></div>
+            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo"></div>
             <nav class="nav-links">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
                 <a href="students.html" class="nav-item"><i data-lucide="users"></i><span>Students</span></a>
@@ -67,7 +67,7 @@
         const STUDENT_LEAVE_KEY = 'eduCore_student_leave_requests';
         const LEAVE_API_BASE = (() => {
             const local = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
-            const backend = local ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : window.location.origin) : (window.ENV_BACKEND_URL || window.location.origin);
+            const backend = local ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : window.location.origin) : (window.ENV_BACKEND_URL || window.location.origin);
             return `${backend}/api`;
         })();
         const LEAVE_AUTH_TOKEN = sessionStorage.getItem('eduCore_token') || '';
@@ -171,7 +171,7 @@
             <div class="signature">Student / Parent Signature</div>
             <div class="signature">School Approval Signature</div>
         </section>
-        <div class="footer">Green Land Model School Jand</div>
+        <div class="footer">Readers Line Grammer School Jand</div>
     </main>
 </body>
 </html>`;

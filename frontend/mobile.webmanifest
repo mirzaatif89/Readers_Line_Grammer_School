@@ -1,12 +1,12 @@
 {
-  "name": "Green Land Model School Jand Mobile",
-  "short_name": "Green Land",
+  "name": "Readers Line Grammer School Jand Mobile",
+  "short_name": "Readers Line",
   "start_url": "/mobile.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#faf9f1",
   "theme_color": "#08643b",
-  "description": "Role-based mobile ERP for Green Land Model School Jand.",
+  "description": "Role-based mobile ERP for Readers Line Grammer School Jand.",
   "icons": [
     {
       "src": "/images/logo.jpeg",

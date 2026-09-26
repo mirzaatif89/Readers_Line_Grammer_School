@@ -19,8 +19,8 @@ git push
 ## Step 3: Update Frontend Configuration
 Open `script.js` and update line 18:
 ```javascript
-const BACKEND_URL = isLocalhost 
-    ? 'http://localhost:3000' 
+const BACKEND_URL = isLocalhost
+    ? 'http://localhost:3001'
     : 'YOUR_RENDER_BACKEND_URL_HERE'; // Paste your Render URL
 ```
 

@@ -509,7 +509,7 @@ if (window.Capacitor?.isNativePlatform?.()) {
             window.location.protocol === 'file:';
 
         const backendUrl = isLocalhost
-            ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : window.location.origin)
+            ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : window.location.origin)
             : (window.ENV_BACKEND_URL || window.location.origin);
 
         return `${backendUrl}/api`;
@@ -572,9 +572,9 @@ if (window.Capacitor?.isNativePlatform?.()) {
     function getWelcomeSchoolName() {
         try {
             const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-            return String(settings.schoolName || settings.schoolTitle || 'Green Land Model School Jand').trim() || 'Green Land Model School Jand';
+            return String(settings.schoolName || settings.schoolTitle || 'Readers Line Grammer School Jand').trim() || 'Readers Line Grammer School Jand';
         } catch (_error) {
-            return 'Green Land Model School Jand';
+            return 'Readers Line Grammer School Jand';
         }
     }
 
@@ -599,7 +599,7 @@ if (window.Capacitor?.isNativePlatform?.()) {
         if (document.getElementById('eduWelcomeOverlay')) return;
 
         const displayName = String(payload.displayName || loggedInUser?.fullName || loggedInUser?.username || 'User').trim() || 'User';
-        const schoolName = String(payload.schoolName || getWelcomeSchoolName()).trim() || 'Green Land Model School Jand';
+        const schoolName = String(payload.schoolName || getWelcomeSchoolName()).trim() || 'Readers Line Grammer School Jand';
         const logoSrc = 'images/logo.jpeg';
         const overlay = document.createElement('div');
         overlay.id = 'eduWelcomeOverlay';
@@ -1214,7 +1214,7 @@ if (window.Capacitor?.isNativePlatform?.()) {
         return `
             <aside class="sidebar" data-portal-sidebar>
                 <div class="logo-section">
-                    <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Green Land Model School Jand logo">
+                    <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
                 </div>
                 <div class="portal-sidebar-user">
                     <strong>${escapeHtml(displayName)}</strong>
@@ -1421,7 +1421,7 @@ function logoutUser(event) {
             window.location.hostname.startsWith('172.') ||
             window.location.protocol === 'file:';
         const backendUrl = isLocalhost
-            ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : `${window.location.protocol}//${window.location.hostname}:3000`)
+            ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : `${window.location.protocol}//${window.location.hostname}:3001`)
             : (window.ENV_BACKEND_URL || window.location.origin);
 
         fetch(`${backendUrl}/api/session/end`, {

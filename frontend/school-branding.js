@@ -1,6 +1,6 @@
 // Preserve sessions and school records while migrating only the school identity.
 (() => {
-  const name = 'Green Land Model School Jand';
+  const name = 'Readers Line Grammer School Jand';
   const address = 'Haji Bazar Chowk, Tehsil Road Jand.';
   window.SCHOOL_BRANDING = Object.freeze({name, address, phone:'+92 300 5203469', logo:'images/logo.jpeg'});
   try {

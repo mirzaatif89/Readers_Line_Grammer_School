@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue Report - Green Land Model School Jand management</title>
+    <title>Revenue Report - Readers Line Grammer School Jand management</title>
     <link rel="icon" type="image/png" href="images/logo.jpeg">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -404,7 +404,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo-section">
-                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Green Land Model School Jand logo">
+                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
             </div>
 
             <nav class="nav-links">
@@ -885,7 +885,8 @@
             { id: 'g7', name: 'Class Seven', keywords: ['7', 'seven', '7th', 'class 7', 'class seven', 'grade 7', 'grade 7th'] },
             { id: 'g8', name: 'Class Eight', keywords: ['8', 'eight', '8th', 'class 8', 'class eight', 'grade 8', 'grade 8th'] },
             { id: 'g9', name: 'Class Nine', keywords: ['9', 'nine', '9th', 'class 9', 'class nine', 'grade 9', 'grade 9th'] },
-            { id: 'g10', name: 'Class 10', keywords: ['10', 'ten', '10th', 'class 10', 'class ten', 'grade 10', 'grade 10th'] }
+            { id: 'g10', name: 'Class Ten', keywords: ['10', 'ten', '10th', 'class 10', 'class ten', 'grade 10', 'grade 10th'] },
+            { id: 'graduate', name: 'Graduate', keywords: ['graduate', 'graduated', 'alumni'] }
         ];
 
         function getStandardClassName(rawClass) {
@@ -1550,9 +1551,9 @@
             const schoolName = (() => {
                 try {
                     const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-                    return String(settings.schoolName || settings.schoolTitle || 'Green Land Model School Jand').trim() || 'Green Land Model School Jand';
+                    return String(settings.schoolName || settings.schoolTitle || 'Readers Line Grammer School Jand').trim() || 'Readers Line Grammer School Jand';
                 } catch (_error) {
-                    return 'Green Land Model School Jand';
+                    return 'Readers Line Grammer School Jand';
                 }
             })();
             const printedAt = new Date().toLocaleString();

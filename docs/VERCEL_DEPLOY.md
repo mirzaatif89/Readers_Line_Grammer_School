@@ -47,5 +47,5 @@ npm start
 Open:
 
 ```txt
-http://localhost:3000/index.html
+http://localhost:3001/index.html
 ```

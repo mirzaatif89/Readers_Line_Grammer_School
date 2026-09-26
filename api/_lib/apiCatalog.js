@@ -1,12 +1,12 @@
 const apiCatalog = {
-    project: 'Green Land Model School Jand CRM',
+    project: 'Readers Line Grammer School Jand CRM',
     audience: 'External mobile app developer',
     note: 'Use these backend APIs only. The mobile-app folder in this repo is not required for external app development.',
     baseUrlExamples: [
         'https://YOUR-AMERICAN-LYCEUM-DOMAIN.com/api',
         'https://YOUR-DOMAIN.com/api',
         'http://YOUR-SERVER-IP:3000/api',
-        'http://localhost:3000/api'
+        'http://localhost:3001/api'
     ],
     auth: {
         login: 'POST /api/login',
@@ -109,10 +109,11 @@ const apiCatalog = {
         { method: 'GET', path: '/api/ads', auth: false, group: 'Website and Facilities', description: 'Ads for student and teacher portals.' },
         { method: 'POST', path: '/api/ads', auth: false, group: 'Website and Facilities', description: 'Save portal ad.' },
         { method: 'DELETE', path: '/api/ads/:id', auth: false, group: 'Website and Facilities', description: 'Delete portal ad.' },
-        { method: 'GET', path: '/api/online-admissions', auth: false, group: 'Website and Facilities', description: 'List website online admission applications.' },
-        { method: 'POST', path: '/api/online-admissions', auth: false, group: 'Website and Facilities', description: 'Submit or save an online admission application.' },
-        { method: 'POST', path: '/api/online-admissions/:id', auth: false, group: 'Website and Facilities', description: 'Update online admission application status/details.' },
-        { method: 'DELETE', path: '/api/online-admissions/:id', auth: false, group: 'Website and Facilities', description: 'Delete online admission application.' },
+        { method: 'GET', path: '/api/online-admissions', auth: true, group: 'Website and Facilities', description: 'List admission applications for authenticated school staff.' },
+        { method: 'POST', path: '/api/online-admissions', auth: false, group: 'Website and Facilities', description: 'Submit a public online admission application.' },
+        { method: 'POST', path: '/api/online-admissions/:id', auth: true, group: 'Website and Facilities', description: 'Update an admission application status.' },
+        { method: 'DELETE', path: '/api/online-admissions/:id', auth: true, group: 'Website and Facilities', description: 'Delete an admission application.' },
+        { method: 'POST', path: '/api/online-admissions/:id/approve', auth: true, group: 'Website and Facilities', description: 'Approve an application and create its student record.' },
         { method: 'GET', path: '/api/library/issues', auth: false, group: 'Website and Facilities', description: 'Library issue records.' },
         { method: 'POST', path: '/api/library/issues', auth: false, group: 'Website and Facilities', description: 'Save library issue.' },
         { method: 'POST', path: '/api/library/issues/:id/return', auth: false, group: 'Website and Facilities', description: 'Mark book returned.' },

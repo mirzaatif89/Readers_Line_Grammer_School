@@ -98,7 +98,7 @@ const Student = sequelize.define('Student', {
 app.use('/api/sms', smsRouter);
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 (async () => {
     const dbReady = await initializeDatabase();
     if (dbReady) {

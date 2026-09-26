@@ -94,5 +94,5 @@ https://your-backend.onrender.com
 
 ---
 
-Created by Green Land Model School Jand
+Created by Readers Line Grammer School Jand
 Last updated: 2026

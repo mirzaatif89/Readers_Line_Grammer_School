@@ -97,7 +97,7 @@ Reply or call us at {SCHOOL_PHONE} for details.
 
 ```bash
 # Test SMS sending
-curl -X POST http://localhost:3000/api/sms/send-single \
+curl -X POST http://localhost:3001/api/sms/send-single \
   -H "Content-Type: application/json" \
   -d '{
     "phoneNumber": "+92-300-1234567",

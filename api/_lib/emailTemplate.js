@@ -12,7 +12,7 @@ function formatEmailMoney(value = 0) {
 }
 
 function buildFeeReminderEmail({ schoolName, student, currentMonth, monthlyPending, remainingCharges, totalPending }) {
-    const safeSchool = escapeEmailHtml(schoolName || 'Green Land Model School Jand');
+    const safeSchool = escapeEmailHtml(schoolName || 'Readers Line Grammer School Jand');
     const safeName = escapeEmailHtml(student?.fullName || student?.name || 'Student');
     const safeClass = escapeEmailHtml(student?.classGrade || '-');
     const safeRoll = escapeEmailHtml(student?.rollNo || '-');

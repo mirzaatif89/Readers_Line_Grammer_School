@@ -68,7 +68,7 @@ When everything is working, you'll see:
 
 **In PowerShell:**
 ```
-Real-Time SQL Server running on http://localhost:3000
+Real-Time SQL Server running on http://localhost:3001
 ```
 
 **In Browser Console (F12):**
@@ -108,7 +108,7 @@ DB_USER=root
 DB_PASSWORD=          ← (blank for default XAMPP)
 DB_PORT=3306
 
-PORT=3000
+PORT=3001
 ```
 
 ## 🎯 Next Steps After Installation

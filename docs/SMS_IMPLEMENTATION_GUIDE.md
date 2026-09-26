@@ -77,7 +77,7 @@ app.use('/api/sms', smsRouter);
 
 Open in browser:
 ```
-http://localhost:3000/sms_sender.html
+http://localhost:3001/sms_sender.html
 ```
 
 ---
@@ -281,7 +281,7 @@ CREATE TABLE sms_logs (
 
 ```bash
 # Test single SMS
-curl -X POST http://localhost:3000/api/sms/send-single \
+curl -X POST http://localhost:3001/api/sms/send-single \
   -H "Content-Type: application/json" \
   -d '{
     "phoneNumber": "+92-300-1234567",
@@ -291,10 +291,10 @@ curl -X POST http://localhost:3000/api/sms/send-single \
   }'
 
 # Get SMS logs
-curl http://localhost:3000/api/sms/logs
+curl http://localhost:3001/api/sms/logs
 
 # Get statistics
-curl http://localhost:3000/api/sms/stats
+curl http://localhost:3001/api/sms/stats
 ```
 
 ### Test with JavaScript:
@@ -379,7 +379,7 @@ Input Format           → Normalized Format
 - [ ] Ran `npm install axios`
 - [ ] Added SMS routes to `server.js`
 - [ ] Restarted server
-- [ ] Tested at `http://localhost:3000/sms_sender.html`
+- [ ] Tested at `http://localhost:3001/sms_sender.html`
 - [ ] Verified student list loads
 - [ ] Sent test SMS to 1-2 students
 - [ ] Checked `/api/sms/logs` for delivery status

@@ -31,7 +31,7 @@ DB_USER=root
 DB_PASSWORD=
 DB_PORT=3306
 
-PORT=3000
+PORT=3001
 API_SECRET_KEY=eduCore_secure_sync_2026_X92
 ```
 
@@ -50,7 +50,7 @@ node server.js
 
 You should see:
 ```
-Real-Time SQL Server running on http://localhost:3000
+Real-Time SQL Server running on http://localhost:3001
 ```
 
 ### 5. Open the Application
@@ -88,7 +88,7 @@ will change to successful sync once the server is running.
 ## Verifying Connection
 
 ### Test 1: Backend Health Check
-Open browser and visit: `http://localhost:3000/api/students`
+Open browser and visit: `http://localhost:3001/api/students`
 - Should return: `[]` (empty array) or existing student data
 
 ### Test 2: Real-Time Sync

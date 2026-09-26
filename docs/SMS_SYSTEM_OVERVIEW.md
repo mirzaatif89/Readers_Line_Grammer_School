@@ -146,7 +146,7 @@ node test-sms.js
 
 ### Phase 5: Use UI (∞)
 
-Open browser: `http://localhost:3000/sms_sender.html`
+Open browser: `http://localhost:3001/sms_sender.html`
 
 ---
 
@@ -360,8 +360,8 @@ AWS_REGION=ap-south-1
 □ Server running: npm start
 □ Database connected: check console
 □ SMS routes loaded: GET /api/sms/logs (should work)
-□ Students loading: http://localhost:3000/api/students
-□ Web UI accessible: http://localhost:3000/sms_sender.html
+□ Students loading: http://localhost:3001/api/students
+□ Web UI accessible: http://localhost:3001/sms_sender.html
 □ Test single SMS: Use UI to send to 1 student
 □ Check logs: GET /api/sms/logs
 □ Check stats: GET /api/sms/stats
@@ -382,7 +382,7 @@ npm start
 ### "Students not loading"
 ```
 Fix: Check /api/students endpoint
-curl http://localhost:3000/api/students
+curl http://localhost:3001/api/students
 ```
 
 ### "Invalid phone number error"
@@ -538,7 +538,7 @@ Functionality:
 
 Your school CRM now has a **production-ready SMS system**!
 
-**Next Step:** Open `http://localhost:3000/sms_sender.html` and start sending messages!
+**Next Step:** Open `http://localhost:3001/sms_sender.html` and start sending messages!
 
 ---
 

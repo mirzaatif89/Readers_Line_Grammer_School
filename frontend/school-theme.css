@@ -1,4 +1,4 @@
-/* Green Land's shared school identity for admin, teacher and student screens. */
+/* Readers Line's shared school identity for admin, teacher and student screens. */
 :root {
   --primary-color: #17654e;
   --primary-dark: #104b3a;
@@ -56,7 +56,7 @@ body, input, select, textarea, button { font-family: 'Segoe UI', Arial, sans-ser
   box-shadow: 0 3px 12px rgb(0 0 0 / 12%);
 }
 .dashboard-container .sidebar .logo-section::after {
-  content: 'Green Land\A MODEL SCHOOL JAND';
+  content: 'Readers Line\A GRAMMER SCHOOL JAND';
   min-width: 0;
   color: #f3f6ed;
   font: 600 14px/1.3 'Segoe UI', Arial, sans-serif;

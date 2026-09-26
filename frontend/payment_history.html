@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Statement - Green Land Model School Jand</title>
+    <title>Payment Statement - Readers Line Grammer School Jand</title>
     <link rel="icon" type="image/png" href="images/logo.jpeg">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -189,7 +189,7 @@
     <div class="dashboard-container">
         <aside class="sidebar">
             <div class="logo-section">
-                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Green Land Model School Jand logo">
+                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
             </div>
             <nav class="nav-links">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
@@ -314,7 +314,7 @@
 
         function paymentHistoryApiBaseUrl() {
             const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.hostname.startsWith('192.168.');
-            if (window.location.protocol === 'file:') return 'http://localhost:3000/api';
+            if (window.location.protocol === 'file:') return 'http://localhost:3001/api';
             return `${isLocal ? window.location.origin : window.location.origin}/api`;
         }
 
@@ -588,7 +588,7 @@
             }
 
             const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-            const schoolName = branding.schoolName || branding.schoolTitle || 'Green Land Model School Jand';
+            const schoolName = branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand';
             const logoSrc = branding.logoDataUrl || 'images/logo.jpeg';
             const printedAt = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
             const filterText = [
@@ -835,7 +835,7 @@
                 return;
             }
             const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-            const schoolName = branding.schoolName || branding.schoolTitle || 'Green Land Model School Jand';
+            const schoolName = branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand';
             const logoSrc = branding.logoDataUrl || 'images/logo.jpeg';
             const firstRow = rows[0];
             const total = rows.reduce((sum, row) => sum + row.amount, 0);

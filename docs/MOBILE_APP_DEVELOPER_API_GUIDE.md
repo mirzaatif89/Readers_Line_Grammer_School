@@ -1,6 +1,6 @@
 # Mobile App Developer API Guide
 
-This guide is for the external mobile app developer building the Student Portal and Teacher Portal apps for Green Land Model School Jand. Build the app separately and connect it to this backend API.
+This guide is for the external mobile app developer building the Student Portal and Teacher Portal apps for Readers Line Grammer School Jand. Build the app separately and connect it to this backend API.
 
 ## Base URL
 
@@ -13,7 +13,7 @@ https://YOUR-DOMAIN.com/api
 Local testing:
 
 ```text
-http://localhost:3000/api
+http://localhost:3001/api
 ```
 
 ## Current Backend Status

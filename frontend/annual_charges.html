@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annual Charges - Green Land Model School Jand</title>
+    <title>Annual Charges - Readers Line Grammer School Jand</title>
     <link rel="icon" type="image/png" href="images/logo.jpeg">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -47,7 +47,7 @@
 <body>
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.jpeg" alt="Green Land Model School Jand logo"></div>
+            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo"></div>
             <nav class="nav-links">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
                 <a href="students.html" class="nav-item"><i data-lucide="users"></i><span>Students</span></a>
@@ -93,7 +93,7 @@
                         <div class="slip-head">
                             <div class="slip-logo" id="annualPreviewLogo"><i data-lucide="school"></i></div>
                             <div>
-                                <h2 id="annualPreviewSchoolName">Green Land Model School Jand</h2>
+                                <h2 id="annualPreviewSchoolName">Readers Line Grammer School Jand</h2>
                                 <p id="annualPreviewSchoolAddress">Annual Charges Slip</p>
                                 <div class="slip-contact" id="annualPreviewSchoolPhone"></div>
                             </div>
@@ -137,12 +137,12 @@
 
         function annualApiBaseUrl() {
             const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.hostname.startsWith('192.168.');
-            return `${isLocal || window.location.protocol === 'file:' ? (window.location.protocol === 'file:' ? 'http://localhost:3000' : window.location.origin) : window.location.origin}/api`;
+            return `${isLocal || window.location.protocol === 'file:' ? (window.location.protocol === 'file:' ? 'http://localhost:3001' : window.location.origin) : window.location.origin}/api`;
         }
 
         function getAnnualBrandingSettings() {
             const fallback = {
-                schoolName: 'Green Land Model School Jand',
+                schoolName: 'Readers Line Grammer School Jand',
                 phone: '',
                 address: '',
                 logoDataUrl: ''
@@ -187,7 +187,7 @@
         function getAnnualBrandingFromForm() {
             const branding = getAnnualBrandingSettings();
             return {
-                schoolName: branding.schoolName || 'Green Land Model School Jand',
+                schoolName: branding.schoolName || 'Readers Line Grammer School Jand',
                 phone: branding.phone || '',
                 address: branding.address || branding.schoolAddress || '',
                 logoSrc: getAnnualLogoSrc()
@@ -319,7 +319,7 @@
                         <div class="slip-head">
                             <div class="slip-logo">${options.logoSrc ? `<img src="${escAnnual(options.logoSrc)}" alt="School logo">` : 'SCH'}</div>
                             <div>
-                                <h2>${escAnnual(options.schoolName || 'Green Land Model School Jand')}</h2>
+                                <h2>${escAnnual(options.schoolName || 'Readers Line Grammer School Jand')}</h2>
                                 <p>${escAnnual(options.address || 'Annual Charges Slip')}</p>
                                 ${options.phone ? `<div class="slip-contact">Phone: ${escAnnual(options.phone)}</div>` : ''}
                             </div>

@@ -68,7 +68,7 @@ node test-sms.js
 
 ### 5. Use
 
-Open browser: `http://localhost:3000/sms_sender.html`
+Open browser: `http://localhost:3001/sms_sender.html`
 
 ---
 
@@ -124,16 +124,16 @@ Hi {NAME}, your fees are due. Call us: {SCHOOL_PHONE}
 
 ```bash
 # Check server
-curl http://localhost:3000
+curl http://localhost:3001
 
 # Get students
-curl http://localhost:3000/api/students
+curl http://localhost:3001/api/students
 
 # Get SMS logs
-curl http://localhost:3000/api/sms/logs
+curl http://localhost:3001/api/sms/logs
 
 # Get stats
-curl http://localhost:3000/api/sms/stats
+curl http://localhost:3001/api/sms/stats
 
 # Run test suite
 npm install axios

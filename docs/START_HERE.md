@@ -120,7 +120,7 @@ You should see in console:
 
 Open your browser:
 ```
-http://localhost:3000/sms_sender.html
+http://localhost:3001/sms_sender.html
 ```
 
 You should see a beautiful purple form with:
@@ -180,13 +180,13 @@ Shows results:
 
 ### Test 1: Check Server Routes
 ```bash
-curl http://localhost:3000/api/students
+curl http://localhost:3001/api/students
 ```
 Should return list of students
 
 ### Test 2: Check SMS Stats
 ```bash
-curl http://localhost:3000/api/sms/stats
+curl http://localhost:3001/api/sms/stats
 ```
 Should return SMS statistics
 
@@ -249,14 +249,14 @@ Emergency:
 ### Error: "Student list not loading"
 ```
 Fix: Make sure you have students in database
-Check: http://localhost:3000/api/students
+Check: http://localhost:3001/api/students
 If empty, add students first
 ```
 
 ### Error: "SMS not sending"
 ```
 Fix: Check SMS logs
-Go to: http://localhost:3000/api/sms/logs
+Go to: http://localhost:3001/api/sms/logs
 Look for error message
 ```
 
@@ -339,7 +339,7 @@ npm start
 That's it! Your SMS system is now live! 
 
 ### To Use:
-1. Open: `http://localhost:3000/sms_sender.html`
+1. Open: `http://localhost:3001/sms_sender.html`
 2. Select students
 3. Write message
 4. Click Send!
