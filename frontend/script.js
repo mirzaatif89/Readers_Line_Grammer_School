@@ -1428,10 +1428,10 @@ function escapeHtml(value) {
 
 function getBrandingSettings() {
     const fallback = {
-        schoolName: 'Readers Line Grammer School Jand',
-        schoolTitle: 'Readers Line Grammer School Jand',
+        schoolName: 'Apexiums School System',
+        schoolTitle: 'Apexiums School System',
         session: '',
-        phone: '+92 300 5203469',
+        phone: '0301-3016755',
         address: 'Haji Bazar Chowk, Tehsil Road Jand.',
         schoolAddress: 'Haji Bazar Chowk, Tehsil Road Jand.',
         logoDataUrl: ''
@@ -1468,7 +1468,7 @@ function saveBrandingSettings(patch = {}) {
 
 function getBrandingLogoSrc() {
     const branding = getBrandingSettings();
-    return branding.logoDataUrl || 'images/logo.jpeg';
+    return branding.logoDataUrl || 'images/logo.png';
 }
 
 function getBrandingLogoMarkup(className = 'print-logo', alt = 'School logo') {
@@ -1476,7 +1476,7 @@ function getBrandingLogoMarkup(className = 'print-logo', alt = 'School logo') {
 }
 
 function applyGlobalBranding(branding = getBrandingSettings()) {
-    const logoSrc = branding.logoDataUrl || 'images/logo.jpeg';
+    const logoSrc = branding.logoDataUrl || 'images/logo.png';
     const schoolName = branding.schoolName || branding.schoolTitle || 'School';
     document.querySelectorAll('.portal-logo, img[data-branding-logo]').forEach((img) => {
         if (!img || img.getAttribute('src') === logoSrc) return;
@@ -2656,16 +2656,16 @@ function queueWelcomeAnimationForNextPage(user) {
     try {
         const displayName = user?.fullName || user?.username || user?.role || 'User';
         const role = user?.role || 'User';
-        let schoolName = 'Readers Line Grammer School Jand';
+        let schoolName = 'Apexiums School System';
         try {
             const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
             schoolName = String(settings.schoolName || settings.schoolTitle || schoolName).trim() || schoolName;
         } catch (_error) {
-            schoolName = 'Readers Line Grammer School Jand';
+            schoolName = 'Apexiums School System';
         }
         sessionStorage.setItem(
             EDUCORE_WELCOME_SESSION_KEY,
-            JSON.stringify({ displayName, role, schoolName, logoSrc: 'images/logo.jpeg', at: Date.now() })
+            JSON.stringify({ displayName, role, schoolName, logoSrc: 'images/logo.png', at: Date.now() })
         );
     } catch (error) {
         // Ignore
@@ -2707,18 +2707,18 @@ function showWelcomeAnimationIfNeeded() {
     const schoolName = String(payload.schoolName || (() => {
         try {
             const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-            return settings.schoolName || settings.schoolTitle || 'Readers Line Grammer School Jand';
+            return settings.schoolName || settings.schoolTitle || 'Apexiums School System';
         } catch (_error) {
-            return 'Readers Line Grammer School Jand';
+            return 'Apexiums School System';
         }
-    })()).trim() || 'Readers Line Grammer School Jand';
+    })()).trim() || 'Apexiums School System';
     const escape = typeof escapeSessionText === 'function' ? escapeSessionText : (value) => String(value ?? '');
 
     overlay.innerHTML = `
         <div class="edu-welcome-card">
             <div class="edu-welcome-glow" aria-hidden="true"></div>
             <div class="edu-welcome-icon edu-welcome-logo-wrap">
-                <img class="edu-welcome-logo" src="images/logo.jpeg" alt="${escape(schoolName)} logo">
+                <img class="edu-welcome-logo" src="images/logo.png" alt="${escape(schoolName)} logo">
             </div>
             <h2 class="edu-welcome-title">Welcome, ${escape(safeName)}</h2>
             <p class="edu-welcome-subtitle">Welcome ${escape(safeName)} in ${escape(schoolName)}.</p>
@@ -6415,9 +6415,9 @@ function printStudentAdmissionFormFromEncoded(encodedPayload) {
 function getEmailSchoolName() {
     try {
         const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-        return String(branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand').trim() || 'Readers Line Grammer School Jand';
+        return String(branding.schoolName || branding.schoolTitle || 'Apexiums School System').trim() || 'Apexiums School System';
     } catch (_error) {
-        return 'Readers Line Grammer School Jand';
+        return 'Apexiums School System';
     }
 }
 
@@ -6927,8 +6927,8 @@ async function openStudentPerformanceReportFromEncoded(encodedPayload, reportMod
     const examRows=[...examRowsByKey.values()].sort((a,b)=>String(a.subject).localeCompare(String(b.subject),undefined,{sensitivity:'base'}));
     const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
     const branding=typeof getBrandingSettings==='function'?getBrandingSettings():{};
-    const schoolName=branding.schoolName||branding.schoolTitle||'Readers Line Grammer School Jand';
-    const logoSrc=typeof getBrandingLogoSrc==='function'?getBrandingLogoSrc():'images/logo.jpeg';
+    const schoolName=branding.schoolName||branding.schoolTitle||'Apexiums School System';
+    const logoSrc=typeof getBrandingLogoSrc==='function'?getBrandingLogoSrc():'images/logo.png';
     const obtainedTotal=examRows.reduce((sum,row)=>sum+(Number(row.obtainedMarks)||0),0);
     const marksTotal=examRows.reduce((sum,row)=>sum+(Number(row.totalMarks)||0),0);
     const overallPercentage=marksTotal>0?Math.round(obtainedTotal/marksTotal*100):null;
@@ -6987,7 +6987,7 @@ function buildStudentFullPortfolioReport(student, records, esc) {
     const session = `${year}-${year + 1}`;
     return `<div class="portfolio-report"><style>
         .portfolio-report{width:210mm;min-height:297mm;margin:0 auto;background:#fff;color:#111;padding:7mm;box-sizing:border-box;font-family:"Times New Roman",serif;font-size:11px}.portfolio-report *{box-sizing:border-box}.portfolio-report .print-button{float:right;margin-bottom:5px}.portfolio-sheet{clear:both;border:1.5px solid #111}.portfolio-header{display:grid;grid-template-columns:78px 1fr;align-items:center;min-height:82px;border-bottom:1px solid #111;text-align:center}.portfolio-logo{width:54px;height:54px;object-fit:contain;margin:auto}.portfolio-title{font-size:25px;font-weight:700;line-height:1}.portfolio-school{font-size:17px;font-weight:700;margin-top:8px}.portfolio-bar{text-align:center;font-weight:700;font-size:14px;border-bottom:1px solid #111;background:#f1f1f1}.portfolio-profile{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;border-bottom:1px solid #111;font-weight:700;font-size:14px}.portfolio-profile p{margin:3px 0}.portfolio-line{display:inline-block;min-width:155px;border-bottom:1px solid #111;font-style:italic}.policy{padding:8px 18px;border-bottom:1px solid #111}.policy-text{border:2px solid #111;border-radius:25px;padding:14px 18px;font-size:13px;line-height:1.15;text-align:justify}.portfolio-table{border-collapse:collapse;width:100%;font-size:12px}.portfolio-table th,.portfolio-table td{border:1px solid #111;padding:3px 5px;text-align:center;line-height:1.05}.portfolio-table th:first-child{text-align:left}.portfolio-table .section-title th{text-align:center;background:#eee;font-size:14px}.portfolio-table thead th{background:#e9e9e9;text-align:center}.portfolio-table td{width:11%}.portfolio-table th:first-child{width:56%}.portfolio-table td:not(:empty){font-size:22px;font-family:Arial;color:#142d8b;font-weight:700}.remarks{border-top:1px solid #111}.remarks-title{text-align:center;font-weight:700;font-size:14px;border-bottom:1px solid #111}.remark-row{display:grid;grid-template-columns:1fr 65px;border-bottom:1px solid #111}.remark-row span{padding:4px;border-right:1px solid #111}.signature-title{text-align:center;font-weight:700;font-size:14px}.signatures{display:grid;grid-template-columns:1fr 1fr;gap:75px;padding:18px 18px 7px;font-weight:700}.signature-line{border-top:1px solid #111;text-align:center;padding-top:3px}.result-date{text-align:center;font-weight:700;font-size:14px;padding:4px;border-top:1px solid #111}@media print{body *{visibility:hidden}.portfolio-report,.portfolio-report *{visibility:visible}.portfolio-report{position:absolute;left:0;top:0;width:100%;margin:0;padding:7mm}.portfolio-report .print-button{display:none}@page{size:A4 portrait;margin:0}}</style>
-        <button type="button" class="btn btn-outline print-button" onclick="window.print()">Print</button><div class="portfolio-sheet"><div class="portfolio-header"><img class="portfolio-logo" src="images/logo.jpeg" alt="School logo"><div><div class="portfolio-title">PORTFOLIO REPORT</div><div class="portfolio-school">Readers Line Grammer School Jand</div></div></div><div class="portfolio-bar">Student Profile</div><div class="portfolio-profile"><div><p>Student Name : <span class="portfolio-line">${esc(student.fullName || '-')}</span></p><p>Registration no : <span class="portfolio-line">${esc(student.studentCode || student.id || '-')}</span></p></div><div><p>Class &amp; Section : <span class="portfolio-line">${esc(student.classGrade || '-')}</span></p><p>Session : <span class="portfolio-line">${session}</span></p></div></div><div class="portfolio-bar">Policy Note</div><div class="policy"><div class="policy-text">At Readers Line Grammer School Jand, we focus on skill development rather than only marks. Throughout the academic year, students develop different subject skills and life skills. These skills are regularly observed, assessed, and recorded in each student's portfolio. This summary highlights the important skills, progress, and development of your child during the year.</div></div><table class="portfolio-table"><thead><tr class="section-title"><th colspan="5">Portfolio Skills Assessment Summary</th></tr><tr><th>Subjects Portfolio Assessment</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr></thead><tbody>${assessmentRows(allSubjects)}<tr class="section-title"><th colspan="5">Performance Task</th></tr><tr><th>Co-Curricular Activities</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Project', 'Presentation', 'Practical Task', 'Activities'], 'Co-Curriculum')}<tr class="section-title"><th colspan="5">Learning Attitude</th></tr><tr><th>Participation</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Home Task Completion', 'Classroom behavior', 'Hygiene condition', 'Regularity'], 'Participation')}</tbody></table><div class="remarks"><div class="remarks-title">Remarks</div><div class="remark-row"><span>Excellent performance with strong understanding and independent application of concepts.</span><span></span></div><div class="remark-row"><span>Good progress with a solid understanding; continued practice will further improve performance.</span><span></span></div><div class="remark-row"><span>Shows basic understanding but needs more effort and practice to improve.</span><span></span></div><div class="remark-row"><span>Limited understanding; requires significant improvement and instructional support.</span><span></span></div></div><div class="signature-title">Signature</div><div class="signatures"><div class="signature-line">Teacher's signature</div><div class="signature-line">Principal Signature</div></div><div class="result-date">Result Date : ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' })}</div></div></div>`;
+        <button type="button" class="btn btn-outline print-button" onclick="window.print()">Print</button><div class="portfolio-sheet"><div class="portfolio-header"><img class="portfolio-logo" src="images/logo.png" alt="School logo"><div><div class="portfolio-title">PORTFOLIO REPORT</div><div class="portfolio-school">Apexiums School System</div></div></div><div class="portfolio-bar">Student Profile</div><div class="portfolio-profile"><div><p>Student Name : <span class="portfolio-line">${esc(student.fullName || '-')}</span></p><p>Registration no : <span class="portfolio-line">${esc(student.studentCode || student.id || '-')}</span></p></div><div><p>Class &amp; Section : <span class="portfolio-line">${esc(student.classGrade || '-')}</span></p><p>Session : <span class="portfolio-line">${session}</span></p></div></div><div class="portfolio-bar">Policy Note</div><div class="policy"><div class="policy-text">At Apexiums School System, we focus on skill development rather than only marks. Throughout the academic year, students develop different subject skills and life skills. These skills are regularly observed, assessed, and recorded in each student's portfolio. This summary highlights the important skills, progress, and development of your child during the year.</div></div><table class="portfolio-table"><thead><tr class="section-title"><th colspan="5">Portfolio Skills Assessment Summary</th></tr><tr><th>Subjects Portfolio Assessment</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr></thead><tbody>${assessmentRows(allSubjects)}<tr class="section-title"><th colspan="5">Performance Task</th></tr><tr><th>Co-Curricular Activities</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Project', 'Presentation', 'Practical Task', 'Activities'], 'Co-Curriculum')}<tr class="section-title"><th colspan="5">Learning Attitude</th></tr><tr><th>Participation</th><th>Advance<br>85-100%</th><th>Proficient<br>70-84%</th><th>Developing<br>50-69%</th><th>Below 50%<br>Beginning</th></tr>${genericRows(['Home Task Completion', 'Classroom behavior', 'Hygiene condition', 'Regularity'], 'Participation')}</tbody></table><div class="remarks"><div class="remarks-title">Remarks</div><div class="remark-row"><span>Excellent performance with strong understanding and independent application of concepts.</span><span></span></div><div class="remark-row"><span>Good progress with a solid understanding; continued practice will further improve performance.</span><span></span></div><div class="remark-row"><span>Shows basic understanding but needs more effort and practice to improve.</span><span></span></div><div class="remark-row"><span>Limited understanding; requires significant improvement and instructional support.</span><span></span></div></div><div class="signature-title">Signature</div><div class="signatures"><div class="signature-line">Teacher's signature</div><div class="signature-line">Principal Signature</div></div><div class="result-date">Result Date : ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' })}</div></div></div>`;
 }
 
 function formatClassFeeSessionMonth(value = '') {
@@ -8206,8 +8206,8 @@ function printStudentAdmissionForm(student = {}) {
     const legacyPlaceholderNames = new Set(['harward school', 'harvard school']);
     const schoolName = rawSchoolName && !legacyPlaceholderNames.has(rawSchoolName.toLowerCase())
         ? rawSchoolName
-        : 'Readers Line Grammer School Jand';
-    const schoolLogo = new URL('images/logo.jpeg', window.location.href).href;
+        : 'Apexiums School System';
+    const schoolLogo = new URL('images/logo.png', window.location.href).href;
     const printedAt = new Date().toLocaleString();
     const statusLabel = getStudentStatusLabel(student);
 

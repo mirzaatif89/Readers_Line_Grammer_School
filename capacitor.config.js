@@ -1,7 +1,7 @@
 /** @type {import('@capacitor/cli').CapacitorConfig} */
 module.exports = {
   appId: 'com.americanlyceum.mobile',
-  appName: 'Readers Line Grammer School',
+  appName: 'Apexiums School System',
   webDir: 'frontend',
   ios: {
     scrollEnabled: true,

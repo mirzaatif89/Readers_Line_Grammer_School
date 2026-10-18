@@ -1,5 +1,5 @@
 const apiCatalog = {
-    project: 'Readers Line Grammer School Jand CRM',
+    project: 'Apexiums School System CRM',
     audience: 'External mobile app developer',
     note: 'Use these backend APIs only. The mobile-app folder in this repo is not required for external app development.',
     baseUrlExamples: [

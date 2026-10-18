@@ -29,7 +29,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .site-header { position: sticky; z-index: 30; top: 0; border-bottom: 1px solid rgb(255 239 213 / 16%); background: rgb(63 26 34 / 97%); backdrop-filter: blur(15px); }
 .nav { display: flex; min-height: 82px; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; flex-shrink: 0; align-items: center; gap: 10px; }
-.brand img { width: 58px; height: 58px; border: 1px solid rgb(255 237 194 / 35%); border-radius: 12px; background: var(--white); object-fit: contain; }
+.brand img { width: 122px; height: 44px; border: 1px solid rgb(255 237 194 / 35%); border-radius: 12px; background: var(--white); object-fit: contain; }
 .brand span { color: var(--white); line-height: 1; }
 .brand strong { display: block; font: 700 21px/1 var(--serif); letter-spacing: -.03em; }
 .brand small { display: block; margin-top: 7px; color: var(--gold); font: 800 8px/1 var(--sans); letter-spacing: .14em; }
@@ -163,7 +163,7 @@ footer { color: #ecd9d4; background: var(--maroon-deep); }
   .wrap { width: calc(100% - 36px); }
   .nav { min-height: 70px; }
   .brand { gap: 8px; }
-  .brand img { width: 48px; height: 48px; border-radius: 10px; }
+  .brand img { width: 104px; height: 36px; border-radius: 10px; }
   .brand strong { font-size: 18px; }
   .brand small { margin-top: 5px; font-size: 7px; }
   .menu { display: grid; gap: 4px; padding: 10px; border: 1px solid rgb(255 236 193 / 30%); border-radius: 8px; background: transparent; }

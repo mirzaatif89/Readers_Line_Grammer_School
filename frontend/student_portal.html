@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal - EduCore</title>
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <link rel="stylesheet" href="ai-chat.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -2431,7 +2431,7 @@
 
 <body>
     <header class="portal-header">
-        <img class="portal-logo" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
+        <img class="portal-logo" src="images/logo.png" alt="Apexiums School System logo">
         <button class="portal-menu-btn" type="button" onclick="logout()" title="Logout" aria-label="Logout">
             <i data-lucide="log-out" width="16"></i>
             Logout
@@ -2718,8 +2718,8 @@
 
             <div class="student-result-report-card" id="studentResultReportCard">
                 <header class="student-result-report-head">
-                    <img id="studentResultReportLogo" src="images/logo.jpeg" alt="School logo">
-                    <div><h4>REPORT CARD</h4><p id="studentResultSchoolName">Readers Line Grammer School Jand</p></div>
+                    <img id="studentResultReportLogo" src="images/logo.png" alt="School logo">
+                    <div><h4>REPORT CARD</h4><p id="studentResultSchoolName">Apexiums School System</p></div>
                 </header>
                 <div class="student-result-report-meta">
                     <div><b>Student Name</b><span id="studentResultReportName">-</span></div>
@@ -3069,14 +3069,14 @@
         function getPortalBrandingSettings() {
             try {
                 return {
-                    schoolName: 'Readers Line Grammer School Jand',
-                    schoolTitle: 'Readers Line Grammer School Jand',
-                    phone: '+92 300 5203469', address: 'Jand', schoolAddress: 'Jand',
+                    schoolName: 'Apexiums School System',
+                    schoolTitle: 'Apexiums School System',
+                    phone: '0301-3016755', address: 'Jand', schoolAddress: 'Jand',
                     logoDataUrl: '',
                     ...(JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || '{}') || {})
                 };
             } catch (_error) {
-                return { schoolName: 'Readers Line Grammer School Jand', schoolTitle: 'Readers Line Grammer School Jand', phone: '+92 300 5203469', address: 'Jand', schoolAddress: 'Jand', logoDataUrl: '' };
+                return { schoolName: 'Apexiums School System', schoolTitle: 'Apexiums School System', phone: '0301-3016755', address: 'Jand', schoolAddress: 'Jand', logoDataUrl: '' };
             }
         }
 
@@ -3090,7 +3090,7 @@
         }
 
         function getPortalBrandingLogoSrc() {
-            return 'images/logo.jpeg';
+            return 'images/logo.png';
         }
 
         function applyStudentPortalBranding() {
@@ -3139,7 +3139,7 @@
             const brandingLogo = getPortalBrandingSettings().logoDataUrl;
             if (brandingLogo) return brandingLogo;
             try {
-                const response = await fetch('images/logo.jpeg');
+                const response = await fetch('images/logo.png');
                 if (!response.ok) throw new Error('Logo not available');
                 const blob = await response.blob();
                 return await new Promise((resolve, reject) => {
@@ -3240,7 +3240,7 @@
             <\/thead>
             <tbody>${subjectBlocks}<\/tbody>
         <\/table>
-        <div class="footer">Readers Line Grammer School Jand<\/div>
+        <div class="footer">Apexiums School System<\/div>
     <\/main>
 <\/body>
 <\/html>`;
@@ -5435,7 +5435,7 @@
                 const node = document.getElementById(id);
                 if (node) node.textContent = value || '-';
             };
-            setReportText('studentResultSchoolName', branding.schoolName || 'Readers Line Grammer School Jand');
+            setReportText('studentResultSchoolName', branding.schoolName || 'Apexiums School System');
             setReportText('studentResultReportName', student.fullName || result.studentName || '-');
             setReportText('studentResultReportId', student.studentCode || student.rollNo || result.studentLookupId || student.id || '-');
             setReportText('studentResultReportFather', student.fatherName || result.fatherName || '-');
@@ -5521,7 +5521,7 @@
         function getStudentBranchContactDetails(_campusName) {
             return {
                 campusLabel: 'Jand',
-                contactLine: 'Address: Jand | Phone: +92 300 5203469'
+                contactLine: 'Address: Jand | Phone: 0301-3016755'
             };
         }
 
@@ -5572,7 +5572,7 @@
             if (logoData) pdf.addImage(logoData, 'PNG', left + 3, 16, 19, 19);
             pdf.setFont('helvetica', 'bold');
             pdf.setFontSize(17);
-            pdf.text(branding.schoolName || 'Readers Line Grammer School Jand', pageWidth / 2, 23, { align: 'center', maxWidth: usableWidth - 12 });
+            pdf.text(branding.schoolName || 'Apexiums School System', pageWidth / 2, 23, { align: 'center', maxWidth: usableWidth - 12 });
             pdf.setFontSize(10);
             pdf.text('STUDENT REPORT CARD', pageWidth / 2, 33, { align: 'center' });
 
@@ -5994,7 +5994,7 @@
                     <body>
                         <div class="print-header">
                             <img class="print-logo" src="${escapeHtml(logoSrc)}" alt="School logo">
-                            <div><h2>${escapeHtml(branding.schoolName || 'Readers Line Grammer School Jand')}</h2><p>${escapeHtml(subject)} Performance</p></div>
+                            <div><h2>${escapeHtml(branding.schoolName || 'Apexiums School System')}</h2><p>${escapeHtml(subject)} Performance</p></div>
                         </div>
                         <div class="meta">
                             <div class="box"><strong>Name:</strong> ${escapeHtml(student.fullName || loggedInUser.fullName || '-')}</div>

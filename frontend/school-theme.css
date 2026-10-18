@@ -1,4 +1,4 @@
-/* Readers Line's shared school identity for admin, teacher and student screens. */
+/* APEXIUMS's shared school identity for admin, teacher and student screens. */
 :root {
   --primary-color: #17654e;
   --primary-dark: #104b3a;
@@ -56,7 +56,7 @@ body, input, select, textarea, button { font-family: 'Segoe UI', Arial, sans-ser
   box-shadow: 0 3px 12px rgb(0 0 0 / 12%);
 }
 .dashboard-container .sidebar .logo-section::after {
-  content: 'Readers Line\A GRAMMER SCHOOL JAND';
+  content: 'APEXIUMS\A SCHOOL SYSTEM';
   min-width: 0;
   color: #f3f6ed;
   font: 600 14px/1.3 'Segoe UI', Arial, sans-serif;
@@ -239,7 +239,7 @@ body, input, select, textarea, button { font-family: 'Segoe UI', Arial, sans-ser
 @media (max-width: 900px) {
   .dashboard-container .sidebar { position: sticky; top: 0; width: 100% !important; height: auto; max-height: none; padding: 9px 13px 8px; border: 0; border-bottom: 1px solid rgb(255 255 255 / 12%); }
   .dashboard-container .sidebar .logo-section { display: flex; min-height: 48px; gap: 9px; padding: 2px 2px 8px; margin: 0 0 7px; border: 0; background: none; }
-  .dashboard-container .sidebar .sidebar-logo-img { width: 37px; height: 37px; max-width: 37px; border-radius: 10px; }
+  .dashboard-container .sidebar .sidebar-logo-img { width: 96px; height: 34px; max-width: 96px; border-radius: 10px; }
   .dashboard-container .sidebar .logo-section::after { font-size: 12px; }
   .dashboard-container .sidebar .nav-links { display: flex; flex: none !important; gap: 5px; overflow-x: auto; overflow-y: hidden; margin: 0; padding: 0 0 2px; }
   .dashboard-container .sidebar .nav-item,

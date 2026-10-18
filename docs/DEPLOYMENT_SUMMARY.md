@@ -94,5 +94,5 @@ https://your-backend.onrender.com
 
 ---
 
-Created by Readers Line Grammer School Jand
+Created by Apexiums School System
 Last updated: 2026

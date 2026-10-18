@@ -3513,7 +3513,7 @@ app.post('/api/email/execute-all', authenticateToken, async (req, res) => {
             paidByStudent.set(studentId, (paidByStudent.get(studentId) || 0) + (Number(payment.amount || 0) || 0));
         });
 
-        const schoolName = getSmtpConfig().fromName || 'Readers Line Grammer School Jand';
+        const schoolName = getSmtpConfig().fromName || 'Apexiums School System';
         const result = { pendingFees: { sent: 0, failed: 0, skipped: 0, errors: [] }, birthdays: { sent: 0, failed: 0 }, specialNotices: { sent: 0, failed: 0 } };
 
         for (const row of students) {
@@ -3910,16 +3910,17 @@ app.get('/api/about-software', (_req, res) => {
     const records = readMobileStore('about_software');
     res.json({
         success: true,
-        aboutSoftware: records[0] || {
+        aboutSoftware: {
+            ...(records[0] || {}),
             id: 'ABOUT-SOFTWARE',
-            appName: 'Readers Line Grammer School Jand',
-            schoolName: 'Readers Line Grammer School Jand',
-            website: process.env.SCHOOL_WEBSITE || '',
-            supportEmail: process.env.SMTP_FROM_EMAIL || '',
-            supportPhone: '+92 300 5203469',
+            appName: 'Apexiums School System',
+            schoolName: 'Apexiums School System',
+            website: process.env.SCHOOL_WEBSITE || 'https://apexiumssoftware.space/#home',
+            supportEmail: 'apexiumstechnologies@gmail.com',
+            supportPhone: '0301-3016755',
             schoolAddress: 'Haji Bazar Chowk, Tehsil Road Jand.',
             principalName: 'Malik M. Tahir Suleman',
-            description: 'Student and teacher portal APIs for Readers Line Grammer School Jand.',
+            description: 'Student and teacher portal APIs for Apexiums School System.',
             version: '1.0.0'
         }
     });
@@ -4176,7 +4177,7 @@ function buildLocalAiAnswer(question = '', context = {}) {
 
 async function callOpenAiForSchoolAnswer(message, context) {
     const prompt = [
-        'You are Readers Line Grammer School Jand portal assistant.',
+        'You are Apexiums School System portal assistant.',
         'Answer in the same language style as the user. Most users write Roman Urdu.',
         'Use only the provided school system context. If exact data is not present, say that it is not available in the current system snapshot.',
         'Do not expose passwords, secrets, API keys, or hidden implementation details.',

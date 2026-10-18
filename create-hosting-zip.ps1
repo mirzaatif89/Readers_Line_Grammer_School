@@ -93,7 +93,7 @@ SMTP_SECURE=false
 SMTP_USER=
 SMTP_PASS=
 SMTP_FROM_EMAIL=
-SMTP_FROM_NAME=Readers Line Grammer School Jand
+SMTP_FROM_NAME=Apexiums School System
 
 SCHOOL_WEBSITE=https://greenlandjand.com
 OPENAI_API_KEY=
@@ -102,7 +102,7 @@ OPENAI_MODEL=gpt-4o-mini
 Set-Content -LiteralPath (Join-Path $tempDir ".env.example") -Value $envTemplate -Encoding UTF8
 
 $deployNotes = @'
-READERS LINE GRAMMER SCHOOL JAND — HOSTINGER NODE.JS PACKAGE
+Apexiums School System — HOSTINGER NODE.JS PACKAGE
 Domain: greenlandjand.com
 
 1. Extract this ZIP into the Hostinger Node.js application directory assigned to the domain.

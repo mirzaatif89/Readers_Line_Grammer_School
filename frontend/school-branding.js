@@ -1,13 +1,14 @@
-// Preserve sessions and school records while migrating only the school identity.
+﻿// Preserve sessions and school records while migrating only the school identity.
 (() => {
-  const name = 'Readers Line Grammer School Jand';
+  const name = 'Apexiums School System';
   const address = 'Haji Bazar Chowk, Tehsil Road Jand.';
-  window.SCHOOL_BRANDING = Object.freeze({name, address, phone:'+92 300 5203469', logo:'images/logo.jpeg'});
+  window.SCHOOL_BRANDING = Object.freeze({name, address, phone:'0301-3016755', logo:'images/logo.png'});
   try {
     const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-    if (!settings.greenLandBrandingVersion) {
-      Object.assign(settings, {schoolName:name, schoolTitle:name, address, schoolAddress:address, phone:'+92 300 5203469', logoDataUrl:'', greenLandBrandingVersion:1});
+    if (settings.apexiumsBrandingVersion !== 2) {
+      Object.assign(settings, {schoolName:name, schoolTitle:name, address, schoolAddress:address, phone:'0301-3016755', logoDataUrl:'', apexiumsBrandingVersion:2});
       localStorage.setItem('eduCore_settings', JSON.stringify(settings));
     }
   } catch (_) { /* The static branding also works when storage is disabled. */ }
 })();
+

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue Report - Readers Line Grammer School Jand management</title>
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+    <title>Revenue Report - Apexiums School System management</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -404,7 +404,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo-section">
-                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
+                <img class="sidebar-logo-img" src="images/logo.png" alt="Apexiums School System logo">
             </div>
 
             <nav class="nav-links">
@@ -1552,9 +1552,9 @@
             const schoolName = (() => {
                 try {
                     const settings = JSON.parse(localStorage.getItem('eduCore_settings') || '{}') || {};
-                    return String(settings.schoolName || settings.schoolTitle || 'Readers Line Grammer School Jand').trim() || 'Readers Line Grammer School Jand';
+                    return String(settings.schoolName || settings.schoolTitle || 'Apexiums School System').trim() || 'Apexiums School System';
                 } catch (_error) {
-                    return 'Readers Line Grammer School Jand';
+                    return 'Apexiums School System';
                 }
             })();
             const printedAt = new Date().toLocaleString();

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annual Charges - Readers Line Grammer School Jand</title>
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+    <title>Annual Charges - Apexiums School System</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -47,7 +47,7 @@
 <body>
     <div class="dashboard-container">
         <aside class="sidebar">
-            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo"></div>
+            <div class="logo-section"><img class="sidebar-logo-img" src="images/logo.png" alt="Apexiums School System logo"></div>
             <nav class="nav-links">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
                 <a href="students.html" class="nav-item"><i data-lucide="users"></i><span>Students</span></a>
@@ -93,7 +93,7 @@
                         <div class="slip-head">
                             <div class="slip-logo" id="annualPreviewLogo"><i data-lucide="school"></i></div>
                             <div>
-                                <h2 id="annualPreviewSchoolName">Readers Line Grammer School Jand</h2>
+                                <h2 id="annualPreviewSchoolName">Apexiums School System</h2>
                                 <p id="annualPreviewSchoolAddress">Annual Charges Slip</p>
                                 <div class="slip-contact" id="annualPreviewSchoolPhone"></div>
                             </div>
@@ -142,7 +142,7 @@
 
         function getAnnualBrandingSettings() {
             const fallback = {
-                schoolName: 'Readers Line Grammer School Jand',
+                schoolName: 'Apexiums School System',
                 phone: '',
                 address: '',
                 logoDataUrl: ''
@@ -164,7 +164,7 @@
 
         function getAnnualLogoSrc() {
             const branding = getAnnualBrandingSettings();
-            return branding.logoDataUrl || (typeof getBrandingLogoSrc === 'function' ? getBrandingLogoSrc() : 'images/logo.jpeg');
+            return branding.logoDataUrl || (typeof getBrandingLogoSrc === 'function' ? getBrandingLogoSrc() : 'images/logo.png');
         }
 
         function setAnnualLogoNode(node, logoSrc) {
@@ -187,7 +187,7 @@
         function getAnnualBrandingFromForm() {
             const branding = getAnnualBrandingSettings();
             return {
-                schoolName: branding.schoolName || 'Readers Line Grammer School Jand',
+                schoolName: branding.schoolName || 'Apexiums School System',
                 phone: branding.phone || '',
                 address: branding.address || branding.schoolAddress || '',
                 logoSrc: getAnnualLogoSrc()
@@ -319,7 +319,7 @@
                         <div class="slip-head">
                             <div class="slip-logo">${options.logoSrc ? `<img src="${escAnnual(options.logoSrc)}" alt="School logo">` : 'SCH'}</div>
                             <div>
-                                <h2>${escAnnual(options.schoolName || 'Readers Line Grammer School Jand')}</h2>
+                                <h2>${escAnnual(options.schoolName || 'Apexiums School System')}</h2>
                                 <p>${escAnnual(options.address || 'Annual Charges Slip')}</p>
                                 ${options.phone ? `<div class="slip-contact">Phone: ${escAnnual(options.phone)}</div>` : ''}
                             </div>
@@ -376,7 +376,7 @@
                 <html>
                 <head>
                     <title>Annual Charges - ${escAnnual(selectedClass)}</title>
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+    <link rel="icon" type="image/png" href="images/logo.png">
                     <style>
                         body { margin:0; font-family: Arial, sans-serif; color:#111827; background:#fff; }
                         .print-slip { page-break-after: always; padding: 14mm; }

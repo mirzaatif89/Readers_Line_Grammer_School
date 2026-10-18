@@ -1,18 +1,19 @@
-{
-  "name": "Readers Line Grammer School Jand Mobile",
-  "short_name": "Readers Line",
+﻿{
+  "name": "Apexiums School System Mobile",
+  "short_name": "APEXIUMS",
   "start_url": "/mobile.html",
   "scope": "/",
   "display": "standalone",
   "background_color": "#faf9f1",
   "theme_color": "#08643b",
-  "description": "Role-based mobile ERP for Readers Line Grammer School Jand.",
+  "description": "Role-based mobile ERP for Apexiums School System.",
   "icons": [
     {
-      "src": "/images/logo.jpeg",
+      "src": "/images/logo.png",
       "sizes": "any",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
 }
+

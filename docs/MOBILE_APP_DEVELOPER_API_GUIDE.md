@@ -1,6 +1,6 @@
 # Mobile App Developer API Guide
 
-This guide is for the external mobile app developer building the Student Portal and Teacher Portal apps for Readers Line Grammer School Jand. Build the app separately and connect it to this backend API.
+This guide is for the external mobile app developer building the Student Portal and Teacher Portal apps for Apexiums School System. Build the app separately and connect it to this backend API.
 
 ## Base URL
 

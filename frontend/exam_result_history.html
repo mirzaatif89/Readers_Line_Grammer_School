@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result History - Readers Line Grammer School Jand</title>
+    <title>Result History - Apexiums School System</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -18,7 +18,7 @@
             <div class="logo-section">
                 <i data-lucide="graduation-cap" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i>
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 0;">
-                    <span style="font-size: 1rem; line-height: 1.2;">Readers Line Grammer School Jand</span>
+                    <span style="font-size: 1rem; line-height: 1.2;">Apexiums School System</span>
                     <span style="font-size: 1rem; line-height: 1.2;">System</span>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                             <div class="result-form-section">
                                 <h4>Date Sheet Header</h4>
                                 <div class="result-form-fields">
-                                    <label>School Name<input type="text" id="dateSheetSchoolName" value="Readers Line Grammer School Jand"></label>
+                                    <label>School Name<input type="text" id="dateSheetSchoolName" value="Apexiums School System"></label>
                                     <label>Exam Title<input type="text" id="dateSheetExamTitle" value="Mid Term Examination 2026"></label>
                                     <label>Session<input type="text" id="dateSheetSession" value="2025-26"></label>
                                     <label>Target Class / Group<input type="text" id="dateSheetClassGroup" value="Grade 5 / Section A"></label>
@@ -196,12 +196,12 @@
                             <div class="date-sheet-frame">
                                 <div class="date-sheet-header">
                                     <div class="date-sheet-header-top">
-                                        <img class="date-sheet-logo" src="images/logo.jpeg" alt="School logo">
+                                        <img class="date-sheet-logo" src="images/logo.png" alt="School logo">
                                         <div>
-                                            <h2 id="previewDateSheetSchoolName">Readers Line Grammer School Jand</h2>
+                                            <h2 id="previewDateSheetSchoolName">Apexiums School System</h2>
                                             <p id="previewDateSheetCampus">Main Campus</p>
                                         </div>
-                                        <img class="date-sheet-logo" src="images/logo.jpeg" alt="School logo">
+                                        <img class="date-sheet-logo" src="images/logo.png" alt="School logo">
                                     </div>
                                     <h3 id="previewDateSheetExamTitle">Mid Term Examination 2026</h3>
                                     <div class="date-sheet-meta">
@@ -258,12 +258,12 @@
                         <div class="result-form-section">
                             <h4>School Header</h4>
                             <div class="result-form-fields">
-                                <label>School Name<input type="text" id="schoolName" value="Readers Line Grammer School Jand"></label>
+                                <label>School Name<input type="text" id="schoolName" value="Apexiums School System"></label>
                                 <label>Campus / Branch<input type="text" id="campusName" value="Main branch"></label>
-                                <label>Contact Line<input type="text" id="schoolContact" value="Address: Jand | Phone: +92 300 5203469"></label>
+                                <label>Contact Line<input type="text" id="schoolContact" value="Address: Jand | Phone: 0301-3016755"></label>
                                 <label>Term Title<input type="text" id="termTitle" value="3rd Term 2025-26"></label>
-                                <label>Left Logo URL<input type="text" id="leftLogoUrl" value="images/logo.jpeg" placeholder="images/logo.jpeg"></label>
-                                <label>Right Logo URL<input type="text" id="rightLogoUrl" value="images/logo.jpeg" placeholder="images/logo.jpeg"></label>
+                                <label>Left Logo URL<input type="text" id="leftLogoUrl" value="images/logo.png" placeholder="images/logo.png"></label>
+                                <label>Right Logo URL<input type="text" id="rightLogoUrl" value="images/logo.png" placeholder="images/logo.png"></label>
                             </div>
                         </div>
 
@@ -334,9 +334,9 @@
                             <div class="result-card-topbar">
                                 <div class="result-logo-box"><img id="previewLeftLogo" alt="Left school logo"></div>
                                 <div class="result-school-center">
-                                    <h2 id="previewSchoolName">Readers Line Grammer School Jand</h2>
+                                    <h2 id="previewSchoolName">Apexiums School System</h2>
                                     <p id="previewCampusName">Main branch</p>
-                                    <p id="previewSchoolContact">Address: Jand | Phone: +92 300 5203469</p>
+                                    <p id="previewSchoolContact">Address: Jand | Phone: 0301-3016755</p>
                                 </div>
                                 <div class="result-logo-box"><img id="previewRightLogo" alt="Right school logo"></div>
                             </div>
@@ -1718,7 +1718,7 @@
 
         function refreshDateSheetPreview() {
             const rows = readScheduleRows();
-            document.getElementById('previewDateSheetSchoolName').textContent = document.getElementById('dateSheetSchoolName').value || 'Readers Line Grammer School Jand';
+            document.getElementById('previewDateSheetSchoolName').textContent = document.getElementById('dateSheetSchoolName').value || 'Apexiums School System';
             document.getElementById('previewDateSheetExamTitle').textContent = document.getElementById('dateSheetExamTitle').value || 'Exam Title';
             document.getElementById('previewDateSheetSession').textContent = document.getElementById('dateSheetSession').value || '-';
             document.getElementById('previewDateSheetClassGroup').textContent = document.getElementById('dateSheetClassGroup').value || '-';
@@ -2009,7 +2009,7 @@
         const RESULT_BRANCH_CONTACTS = {
             main: {
                 campusLabel: 'Jand',
-                contactLine: 'Address: Jand | Phone: +92 300 5203469'
+                contactLine: 'Address: Jand | Phone: 0301-3016755'
             }
         };
 
@@ -2094,7 +2094,7 @@
             const subjects = readSubjectRows();
             const behaviors = readBehaviorRows();
 
-            document.getElementById('previewSchoolName').textContent = document.getElementById('schoolName').value || 'Readers Line Grammer School Jand';
+            document.getElementById('previewSchoolName').textContent = document.getElementById('schoolName').value || 'Apexiums School System';
             document.getElementById('previewCampusName').textContent = document.getElementById('campusName').value || '';
             document.getElementById('previewSchoolContact').textContent = document.getElementById('schoolContact').value || '';
             document.getElementById('previewTermTitle').textContent = document.getElementById('termTitle').value || 'Term';

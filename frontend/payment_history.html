@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Statement - Readers Line Grammer School Jand</title>
-    <link rel="icon" type="image/png" href="images/logo.jpeg">
+    <title>Payment Statement - Apexiums School System</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link rel="stylesheet" href="style.css?v=20260814-centered-school-name">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -189,7 +189,7 @@
     <div class="dashboard-container">
         <aside class="sidebar">
             <div class="logo-section">
-                <img class="sidebar-logo-img" src="images/logo.jpeg" alt="Readers Line Grammer School Jand logo">
+                <img class="sidebar-logo-img" src="images/logo.png" alt="Apexiums School System logo">
             </div>
             <nav class="nav-links">
                 <a href="dashboard.html" class="nav-item"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
@@ -622,8 +622,8 @@
             }
 
             const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-            const schoolName = branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand';
-            const logoSrc = branding.logoDataUrl || 'images/logo.jpeg';
+            const schoolName = branding.schoolName || branding.schoolTitle || 'Apexiums School System';
+            const logoSrc = branding.logoDataUrl || 'images/logo.png';
             const printedAt = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
             const filterText = [
                 document.getElementById('statementStudentFilter').selectedOptions[0]?.textContent || 'All Students',
@@ -877,8 +877,8 @@
                 return;
             }
             const branding = typeof getBrandingSettings === 'function' ? getBrandingSettings() : {};
-            const schoolName = branding.schoolName || branding.schoolTitle || 'Readers Line Grammer School Jand';
-            const logoSrc = branding.logoDataUrl || 'images/logo.jpeg';
+            const schoolName = branding.schoolName || branding.schoolTitle || 'Apexiums School System';
+            const logoSrc = branding.logoDataUrl || 'images/logo.png';
             const firstRow = rows[0];
             const total = rows.reduce((sum, row) => sum + row.amount, 0);
             const printedAt = new Date().toLocaleString('en-PK', { dateStyle: 'medium', timeStyle: 'short' });
